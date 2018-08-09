@@ -4,6 +4,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 
+@SuppressWarnings("serial")
 public class UserServlet extends HttpServlet{
 	public void service(ServletRequest req,ServletResponse res) {
 	System.out.println(req.getParameter("name"));
