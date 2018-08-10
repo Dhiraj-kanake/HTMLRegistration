@@ -34,14 +34,14 @@ public class UserRepository extends HttpServlet {
 		
 		
 		String email=request.getParameter("email");
-		String password=request.getParameter("Password");
+		String password=request.getParameter("password");
 		
 		try{
 				String DBURL = "jdbc:mysql://" + System.getenv("DBHOST") + "/db100035?user=" + System.getenv("DBUSER")
 				      + "&password=" + System.getenv("DBPASSWORD");
 				Class.forName("com.mysql.cj.jdbc.Driver"); 
 				connect = DriverManager.getConnection(DBURL); 
-				preparedStatement = connect.prepareStatement("SELECT email, passward FROM db100035.loginCredential WHERE  EMAIL=? and PASSWARD=?");
+				preparedStatement = connect.prepareStatement("SELECT email, passward FROM loginCredential WHERE  EMAIL=? and PASSWARD=?");
           preparedStatement.setString(1, email);
           preparedStatement.setString(2, password);
 
@@ -54,8 +54,8 @@ public class UserRepository extends HttpServlet {
           }
           else{
          	 System.out.println("wrong credential Please try again");
-         	 RequestDispatcher req=request.getRequestDispatcher("login.html");
-             req.forward(request, response); 
+         	 //RequestDispatcher req=request.getRequestDispatcher("login.html");
+            // req.forward(request, response); 
           }
 		}
 		catch (Exception e)
