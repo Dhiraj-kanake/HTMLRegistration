@@ -2,23 +2,18 @@
 <html>
 <head>
 <meta charset="US-ASCII">
-<title>Insert title here</title>
+<title>Login Page</title>
 </head>
 <body>
-<form action="fs">
-
-<script>
-Email:<br />
-<input type="text" name="Email"/><br />
-Password<br />
-<input type="password" name="password"/><br />
-<br />
-if (pass == "4567"){
-    <a href="home.html"><button>Login</button></a>
-} else {
-    document.write("The password you've is enter is incorrect");
-}</script>
-<button>Login</button>
-</form>
+	<form action="log" method="post">       <!--after pressing the submit button it will go to the home.html  -->
+		Email:<br /> 
+		<input type="text" name="email" /><br /> 
+		Password :<br />
+		<input type="text" name="password" /><br /> 
+		<br />
+		<input type="submit"  value="Login"/><br/>
+	</form>
+	<a href="register.html"><button>Register</button></a>            <!-- register page -->
+	
 </body>
 </html>
