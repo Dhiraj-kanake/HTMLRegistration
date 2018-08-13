@@ -35,27 +35,31 @@ public class UserRepository extends HttpServlet {
 		
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
+		//String name = request.getParameter("name");
 		
 		try{
 				String DBURL = "jdbc:mysql://" + System.getenv("DBHOST") + "/db100035?user=" + System.getenv("DBUSER")
 				      + "&password=" + System.getenv("DBPASSWORD");
 				Class.forName("com.mysql.cj.jdbc.Driver"); 
 				connect = DriverManager.getConnection(DBURL); 
-				preparedStatement = connect.prepareStatement("SELECT email, passward FROM loginCredential WHERE  EMAIL=? and PASSWARD=?");
+				preparedStatement = connect.prepareStatement("SELECT name,email, passward FROM loginCredential WHERE  EMAIL=? and PASSWARD=?");
           preparedStatement.setString(1, email);
           preparedStatement.setString(2, password);
-
-
           resultSet = preparedStatement.executeQuery();
           if(resultSet.next())
           {
-         	 RequestDispatcher req=request.getRequestDispatcher("home.html");
-             req.forward(request, response); 
+         	 String Name=resultSet.getString("name");
+         	 //RequestDispatcher req=request.getRequestDispatcher("home.html");
+         	 request.setAttribute("name",Name );
+         	 RequestDispatcher req=request.getRequestDispatcher("welcome.jsp");
+             req.include(request, response); 
           }
           else{
          	 System.out.println("wrong credential Please try again");
          	 //RequestDispatcher req=request.getRequestDispatcher("login.html");
             // req.forward(request, response); 
+         	 String login_msg="Wrong credential";
+         	 out.println("<font color=red size=4px>"+login_msg+"</font>");
           }
 		}
 		catch (Exception e)
