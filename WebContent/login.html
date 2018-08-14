@@ -6,7 +6,22 @@
 
 </head>
 <body>
-	<form action="log" method="post">       <!--after pressing the submit button it will go to the home.html  -->
+<script type ="text/javascript">
+function checkMail(){
+	var em=document.check.email.value;
+	var atposition=em.indexOf("@");  
+	var dotposition=em.lastIndexOf(".");  
+	if (atposition<1 || dotposition<atposition+2 || dotposition+2>=em.length){  
+	  alert("Please enter a valid e-mail address \n atpostion:"+atposition+"\n dotposition:"+dotposition);  
+	  return false;  
+	  }  
+	
+}
+</script>
+
+
+
+	<form name = "check" action="log" method="post" onsubmit = "return checkMail();">       <!--after pressing the submit button it will go to the home.html  -->
 		Email:<br /> 
 		<input type="text" name="email" /><br /> 
 		Password :<br />
